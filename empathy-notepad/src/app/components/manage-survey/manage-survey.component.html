@@ -1,18 +1,26 @@
-<div class="create-survey-container">
-  <h2>Create a New Survey</h2>
+<div class="manage-survey-container">
   
-  <form [formGroup]="surveyForm" (ngSubmit)="createNewSurvey()">
+  <h2 *ngIf="!isLoadingData">
+    {{ isEditMode ? 'Edit Survey: ' + currentSurveyId : 'Create New Survey' }}
+  </h2>
+  <p *ngIf="isLoadingData">Loading survey data...</p>
+
+  <form [formGroup]="surveyForm" (ngSubmit)="handleSave()" *ngIf="!isLoadingData">
     
     <fieldset class="survey-info">
       <legend>Survey Details</legend>
-      <label>Title:</label>
-      <input type="text" formControlName="title">
+      
+      <label for="title">Title:</label>
+      <input id="title" type="text" formControlName="title">
       <div *ngIf="surveyForm.get('title')?.invalid && surveyForm.get('title')?.touched" class="error">
         Title is required.
       </div>
 
-      <label>Description:</label>
-      <textarea formControlName="description"></textarea>
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description"></textarea>
+      <div *ngIf="surveyForm.get('description')?.hasError('minlength') && surveyForm.get('description')?.touched" class="error">
+        Description must be at least 5 characters long.
+      </div>
     </fieldset>
 
     <h3>Questions</h3>
@@ -26,6 +34,9 @@
         
         <label>Text:</label>
         <input type="text" formControlName="questionText">
+        <div *ngIf="questionGroup.get('questionText')?.invalid && questionGroup.get('questionText')?.touched" class="error">
+          Question text is required.
+        </div>
         
         <label>Mandatory:</label>
         <input type="checkbox" formControlName="mandatoryInd">
@@ -34,6 +45,7 @@
         <div formArrayName="options" class="option-list">
           <div *ngFor="let optionControl of getOptions(qIndex).controls; let oIndex = index">
             <input type="text" [formControlName]="oIndex">
+            
             <button type="button" (click)="removeOption(qIndex, oIndex)" *ngIf="getOptions(qIndex).length > 2">
               Remove Option
             </button>
@@ -48,8 +60,14 @@
     <button type="button" (click)="addQuestion()">+ Add New Question</button>
 
     <hr>
+    
     <button type="submit" [disabled]="surveyForm.invalid">
-      Create Survey
+      {{ isEditMode ? 'Save Changes' : 'Create Survey' }}
     </button>
+    
+    <button type="button" [routerLink]="['/surveys']">
+        Cancel / Back to List
+    </button>
+    
   </form>
 </div>

@@ -1,13 +1,13 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from "../card/card.component";
 import { ApiDataService } from '../../service/api-data.service';
 import { Survey } from '../../../models/survey.model';
-import { CreateSurveyComponent } from '../create-survey/create-survey.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CardComponent, CommonModule, CreateSurveyComponent],
+  imports: [CardComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -16,9 +16,15 @@ export class HomeComponent implements OnInit{
   errorMessage: string | null = null;
   isLoading = true;
 
-  constructor(private apiDataService: ApiDataService) { }
+  constructor(private apiDataService: ApiDataService,
+              private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.loadSurveys();
+  }
+
+  loadSurveys() {
     this.apiDataService.getSurveys().subscribe({
       next: (data) => {
         console.log('Surveys loaded', data);
@@ -32,4 +38,13 @@ export class HomeComponent implements OnInit{
       }
     });
   }
+
+  goToEdit(id: string): void {
+    this.router.navigate(['/surveys/edit', id]);
+  }
+
+  goToCreate(): void {
+    this.router.navigate(['/surveys/create']);
+  }
+
 }

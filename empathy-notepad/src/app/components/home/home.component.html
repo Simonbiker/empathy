@@ -5,27 +5,21 @@
 
   <ng-container *ngIf="!isLoading && !errorMessage">
     
+    <button (click)="goToCreate()">+ Create New Survey</button> 
+    
     <ng-container *ngIf="surveys.length > 0; else noSurveysFound">
       <app-card 
         *ngFor="let singleSurvey of surveys" 
-        [surveyData]="singleSurvey">
-      </app-card>
+        [surveyData]="singleSurvey"
+        (editSurvey)="goToEdit($event.id)"> </app-card>
     </ng-container>
 
     <ng-template #noSurveysFound>
       <div class="no-data-state">
-        
         <h3>No Surveys Available</h3>
-        <p>It looks like you haven't created any surveys yet.</p>
-        
-        <app-create-survey></app-create-survey>
-        
+        <p>Use the button above to create your first survey.</p>
       </div>
     </ng-template>
 
   </ng-container>
-
-        <!-- <app-create-survey></app-create-survey> -->
-
-
 </div>

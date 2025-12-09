@@ -11,7 +11,7 @@ export interface Question {
 }
 
 export interface Survey {
-      id: number;
+      id: string;
       title: string;
       description: string;
       questions: Question[];

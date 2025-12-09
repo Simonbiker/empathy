@@ -18,16 +18,16 @@ export class ApiDataService {
     return this.http.get<Survey[]>(`${this.apiUrl}/survey`); // using the singular resource path /survey instead of the plural /surveys
   }
 
-  // TODO Get serveys by user id
   getSurveyById(id: string): Observable<Survey> {
     return this.http.get<Survey>(`${this.apiUrl}/surveys/${id}`);
   }
-  // TODO Post new serveys
+  
   createSurvey(newSurveyData: NewSurveyBody): Observable<Survey> {
     return this.http.post<Survey>(`${this.apiUrl}/survey`, newSurveyData);
   }
-  // TODO Update serveys
 
-  // TODO Delete serveys
-  
+  updateSurvey(id: string, updatedSurveyData: Survey): Observable<Survey> {
+    return this.http.put<Survey>(`${this.apiUrl}/surveys/${id}`, updatedSurveyData);
+  }
+
 }

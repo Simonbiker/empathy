@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Survey } from '../../../models/survey.model';
 
 
@@ -10,5 +10,11 @@ import { Survey } from '../../../models/survey.model';
 })
 
 export class CardComponent {
-  @Input({ required: true }) surveyData!: Survey;  
+  @Input() surveyData!: Survey;
+  
+  @Output() editSurvey = new EventEmitter<Survey>(); 
+
+  onEditClick(): void {
+    this.editSurvey.emit(this.surveyData); 
+  }
 }
