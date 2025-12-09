@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Survey } from '../../../models/survey.model';
+
 
 @Component({
   selector: 'app-card',
@@ -6,6 +8,7 @@ import { Component } from '@angular/core';
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
-export class CardComponent {
 
+export class CardComponent {
+  @Input({ required: true }) surveyData!: Survey;  
 }

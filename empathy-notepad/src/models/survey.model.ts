@@ -1,3 +1,4 @@
+
 export interface Question {
       questionId: number;
       questionText: string;
@@ -9,7 +10,7 @@ export interface Question {
       instructions: string;
 }
 
-export interface SurveyDto {
+export interface Survey {
       id: number;
       title: string;
       description: string;

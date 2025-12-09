@@ -1,0 +1,14 @@
+<div class="survey-container">
+  <p *ngIf="isLoading">Loading surveys...</p>
+  
+  <p *ngIf="errorMessage">{{ errorMessage }}</p> 
+
+  <p *ngIf="!isLoading && !errorMessage && surveys.length === 0">
+    No surveys found to display.
+  </p>
+  
+  <app-card 
+    *ngFor="let singleSurvey of surveys" 
+    [surveyData]="singleSurvey">
+  </app-card>
+</div>
