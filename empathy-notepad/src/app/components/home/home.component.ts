@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from "../card/card.component";
 import { ApiDataService } from '../../service/api-data.service';
 import { Survey } from '../../../models/survey.model';
+import { CreateSurveyComponent } from '../create-survey/create-survey.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CardComponent, CommonModule],
+  imports: [CardComponent, CommonModule, CreateSurveyComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

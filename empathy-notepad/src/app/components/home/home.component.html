@@ -1,14 +1,31 @@
 <div class="survey-container">
-  <p *ngIf="isLoading">Loading surveys...</p>
   
+  <p *ngIf="isLoading">Loading surveys...</p>
   <p *ngIf="errorMessage">{{ errorMessage }}</p> 
 
-  <p *ngIf="!isLoading && !errorMessage && surveys.length === 0">
-    No surveys found to display.
-  </p>
-  
-  <app-card 
-    *ngFor="let singleSurvey of surveys" 
-    [surveyData]="singleSurvey">
-  </app-card>
+  <ng-container *ngIf="!isLoading && !errorMessage">
+    
+    <ng-container *ngIf="surveys.length > 0; else noSurveysFound">
+      <app-card 
+        *ngFor="let singleSurvey of surveys" 
+        [surveyData]="singleSurvey">
+      </app-card>
+    </ng-container>
+
+    <ng-template #noSurveysFound>
+      <div class="no-data-state">
+        
+        <h3>No Surveys Available</h3>
+        <p>It looks like you haven't created any surveys yet.</p>
+        
+        <app-create-survey></app-create-survey>
+        
+      </div>
+    </ng-template>
+
+  </ng-container>
+
+        <!-- <app-create-survey></app-create-survey> -->
+
+
 </div>

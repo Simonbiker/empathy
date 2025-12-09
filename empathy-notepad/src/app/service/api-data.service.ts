@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Survey } from '../../models/survey.model';
 
 
+type NewSurveyBody = Omit<Survey, 'id'>;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,5 +23,11 @@ export class ApiDataService {
     return this.http.get<Survey>(`${this.apiUrl}/surveys/${id}`);
   }
   // TODO Post new serveys
+  createSurvey(newSurveyData: NewSurveyBody): Observable<Survey> {
+    return this.http.post<Survey>(`${this.apiUrl}/survey`, newSurveyData);
+  }
   // TODO Update serveys
+
+  // TODO Delete serveys
+  
 }

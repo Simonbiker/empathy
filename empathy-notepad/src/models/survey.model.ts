@@ -4,7 +4,7 @@ export interface Question {
       questionText: string;
       mandatoryInd:boolean;
       questionType: number;
-      questions: string[];
+      options: string[];
       randomizeOptionsInd: boolean;
       programmerNotes: string;
       instructions: string;

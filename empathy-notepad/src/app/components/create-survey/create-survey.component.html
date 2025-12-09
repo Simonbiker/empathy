@@ -1,0 +1,55 @@
+<div class="create-survey-container">
+  <h2>Create a New Survey</h2>
+  
+  <form [formGroup]="surveyForm" (ngSubmit)="createNewSurvey()">
+    
+    <fieldset class="survey-info">
+      <legend>Survey Details</legend>
+      <label>Title:</label>
+      <input type="text" formControlName="title">
+      <div *ngIf="surveyForm.get('title')?.invalid && surveyForm.get('title')?.touched" class="error">
+        Title is required.
+      </div>
+
+      <label>Description:</label>
+      <textarea formControlName="description"></textarea>
+    </fieldset>
+
+    <h3>Questions</h3>
+    
+    <div formArrayName="questions" class="question-list">
+      
+      <div *ngFor="let questionGroup of questions.controls; let qIndex = index" 
+           [formGroupName]="qIndex" class="question-group">
+        
+        <h4>Question #{{ qIndex + 1 }}</h4>
+        
+        <label>Text:</label>
+        <input type="text" formControlName="questionText">
+        
+        <label>Mandatory:</label>
+        <input type="checkbox" formControlName="mandatoryInd">
+
+        <h5>Options (Min 2)</h5>
+        <div formArrayName="options" class="option-list">
+          <div *ngFor="let optionControl of getOptions(qIndex).controls; let oIndex = index">
+            <input type="text" [formControlName]="oIndex">
+            <button type="button" (click)="removeOption(qIndex, oIndex)" *ngIf="getOptions(qIndex).length > 2">
+              Remove Option
+            </button>
+          </div>
+          <button type="button" (click)="addOption(qIndex)">+ Add Option</button>
+        </div>
+
+        <button type="button" (click)="removeQuestion(qIndex)">Delete Question</button>
+      </div>
+    </div>
+    
+    <button type="button" (click)="addQuestion()">+ Add New Question</button>
+
+    <hr>
+    <button type="submit" [disabled]="surveyForm.invalid">
+      Create Survey
+    </button>
+  </form>
+</div>
