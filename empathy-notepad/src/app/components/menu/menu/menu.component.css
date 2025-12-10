@@ -4,12 +4,29 @@
 }
 
 .dropdown-toggle {
+
   padding: 8px 15px;
-  background-color: #007bff;
-  color: white;
+  background-color: #F5FAFF;
+  color: #175CD3;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+
+  justify-content: flex-start;
+}
+
+.menu-svg-icon {
+    width: 16px; 
+    height: 16px;
+    
+    fill: #175CD3;
+    
+    flex-shrink: 0;
 }
 
 .dropdown-panel {

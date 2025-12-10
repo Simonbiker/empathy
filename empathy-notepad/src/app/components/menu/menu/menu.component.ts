@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 interface QuestionType {
   key: string;
   label: string;
+  isDefault?: boolean;
 }
 
 @Component({
@@ -24,13 +25,14 @@ export class MenuComponent implements OnInit {
 
   public allTypes: QuestionType[] = [
     { key: 'search', label: 'Search' }, // Placeholder for the search input
-    { key: 'single_choice', label: 'Single Choice' },
+    { key: 'single_choice', label: 'Single Choice', isDefault: true },
     { key: 'multiple_choice', label: 'Multiple Choice' },
     { key: 'single_line', label: 'Single-Line Input' },
     { key: 'dropdown', label: 'Dropdown List' }
   ];
 
   public filteredTypes: QuestionType[] = [];
+  constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
     this.filterList();
@@ -57,6 +59,13 @@ export class MenuComponent implements OnInit {
     this.selectedKey = key;
     this.typeSelected.emit(key);
     this.isOpen = false; // Close menu after selection
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (this.isOpen && !this.elementRef.nativeElement.contains(event.target)) {
+      this.isOpen = false;
+    }
   }
 
 }
