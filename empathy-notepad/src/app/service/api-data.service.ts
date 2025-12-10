@@ -15,11 +15,11 @@ export class ApiDataService {
   constructor(private http: HttpClient) { }
 
   getSurveys(): Observable<Survey[]> { 
-    return this.http.get<Survey[]>(`${this.apiUrl}/survey`); // using the singular resource path /survey instead of the plural /surveys
+    return this.http.get<Survey[]>(`${this.apiUrl}/survey`); 
   }
 
   getSurveyById(id: string): Observable<Survey> {
-    return this.http.get<Survey>(`${this.apiUrl}/surveys/${id}`);
+    return this.http.get<Survey>(`${this.apiUrl}/survey/${id}`);
   }
   
   createSurvey(newSurveyData: NewSurveyBody): Observable<Survey> {
@@ -27,7 +27,7 @@ export class ApiDataService {
   }
 
   updateSurvey(id: string, updatedSurveyData: Survey): Observable<Survey> {
-    return this.http.put<Survey>(`${this.apiUrl}/surveys/${id}`, updatedSurveyData);
+    return this.http.put<Survey>(`${this.apiUrl}/survey/${id}`, updatedSurveyData);
   }
 
 }
