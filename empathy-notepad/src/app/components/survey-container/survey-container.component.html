@@ -1,13 +1,41 @@
-<div class="survey-wrapper">
-  <div *ngFor="let singleSurvey of surveys" >
-      <h2>{{ singleSurvey.title }}</h2>
-      <p class="survey-description">{{ singleSurvey.description }}</p>
+<ng-container *ngIf="surveys.length > 0">
   
+  <!-- For testing purposes to show only one -->
+  <ng-container *ngIf="surveys[0] as singleSurvey">
+    
+    <div class="survey-wrapper"> 
+      <div class="title-wrapper">
+        <h2 class="title">{{ singleSurvey.title }}</h2>
+        <p class="description">{{ singleSurvey.description }}</p>
+      </div>
+      
+      <!-- <app-question 
+        *ngFor="let question of singleSurvey.questions" 
+        [questionData]="question"
+        [displayIndex]="singleSurvey.questions.indexOf(question) + 1">
+      </app-question>  -->
+      <!-- <app-card 
+        [surveyData]="singleSurvey" 
+        (editSurvey)="handleEditClick($event.id)"> 
+      </app-card> -->
+
       <app-card 
-            [surveyData]="singleSurvey"
-            (editSurvey)="handleEditClick($event.id)"> 
+        *ngFor="let question of singleSurvey.questions" 
+        [questionData]="question"
+        [displayIndex]="singleSurvey.questions.indexOf(question) + 1"
+        (typeSelected)="onQuestionTypeSelect(singleSurvey.id, $event)">
       </app-card>
-</div>
-  <button (click)="createSurvey.emit()">Create New Survey</button> 
-  
-</div>
+
+      <button (click)="createSurvey.emit()" class="create-button">+ Create New Survey</button>
+      
+    </div>
+
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="surveys.length === 0">
+    <div class="no-surveys-wrapper">
+        <p>No surveys are currently available for display.</p>
+        <button (click)="createSurvey.emit()" class="create-button">Start First Survey</button>
+    </div>
+</ng-container>

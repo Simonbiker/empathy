@@ -1,0 +1,105 @@
+/* Mobile styles */
+
+.question-card{
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #1570EF;
+      margin-bottom: 1px;
+}
+
+
+.question-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding-bottom: 10px; 
+}
+
+
+.index-box-wrapper {
+    width: 45px; 
+    min-height: 36px;
+    padding: 6px 10px 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc; 
+    background-color: #363F47;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-index-number {
+    font-family: 'Inter';
+    font-weight: 600; 
+    font-size: 16px; 
+    line-height: 24px;
+    text-align: center;
+    color: #FCFCFD;
+    margin: 0; /* Important: Remove any default margin from the div */
+}
+
+.question-index-and-menu {
+    display: flex;
+    gap: 12px; 
+    align-items: center;
+    width: 100%;
+}
+
+
+.question{
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 28px;
+      color: #182230;
+      margin: 0px;
+      letter-spacing: 0px;
+}
+
+.question-group{
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      margin-top: 1px;
+}
+
+.options-list{
+      list-style: none;
+      padding-left: 0px;
+      font-family: 'Inter';
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 14px;
+      color: #475467;
+}
+
+.options-list li {
+      margin-bottom: 16px;
+}
+
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+      .question-card{
+            max-width: 1376px;
+            min-height: 325px;
+            padding: 24px 40px 32px 40px;
+            border-radius: 12px;
+            border: 2px solid #1570EF;
+            margin-bottom: 10px;
+            gap: 24px;
+      }
+
+      .question-group{
+            max-width: 1319px;
+            min-height: 186px;
+            padding: 20px 0px 20px 9px;
+            gap: 8px;
+      }
+
+      .options-list{
+            min-height: 110px;
+      }
+}

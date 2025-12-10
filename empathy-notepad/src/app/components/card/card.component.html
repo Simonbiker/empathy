@@ -1,23 +1,13 @@
-<div class="survey-card">  
-  <div class="details">
-    <p>ID: {{ surveyData.id }}</p>
-    <div *ngFor="let question of surveyData.questions">
-      <div class="question-item">
-        <strong>Q:</strong> {{ question.questionText }} 
-        <span *ngIf="question.mandatoryInd">(Mandatory)</span>
-        <div *ngIf="question.options && question.options.length > 0">
-          <!-- TODO need to change the dots to '-' -->
-          <ul> 
-            <li *ngFor="let option of question.options">{{ option }}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="question-action-wrapper">
+    
+    <app-question 
+        [questionData]="questionData"
+        [displayIndex]="displayIndex">
+        
+        <app-menu 
+            (typeSelected)="typeSelected.emit($event)" 
+            menu-slot>
+        </app-menu>
 
-  <div class="actions">
-    <button (click)="onEditClick()">Edit Survey</button>
-    <app-menu (typeSelected)="onQuestionTypeSelect($event)"></app-menu>
-  </div>
-  
-  </div>
+    </app-question>
+</div>

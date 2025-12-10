@@ -1,0 +1,25 @@
+<div class="question-card">
+    <div class="question-header">
+        <div class="question-index-and-menu"> 
+          <div class="index-box-wrapper"> 
+              <div class="display-index-number">Q{{ displayIndex }}</div> 
+          </div>
+          <ng-content select="[menu-slot]"></ng-content> 
+        </div>
+    </div>
+
+    <div class="question-group">
+      <p class="question">{{ questionData.questionText }}</p>
+      
+        <ul *ngIf="questionData.options && questionData.options.length > 0" class="options-list">
+          <li *ngFor="let option of questionData.options">
+              — {{ option }}
+          </li>
+        </ul>   
+    </div>
+    
+    
+    <p *ngIf="!questionData.options || questionData.options.length === 0" class="no-options">
+        [Answer Type: Text Input]
+    </p>
+</div>
