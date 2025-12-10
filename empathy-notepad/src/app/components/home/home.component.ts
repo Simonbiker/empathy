@@ -1,13 +1,13 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardComponent } from "../card/card.component";
 import { ApiDataService } from '../../service/api-data.service';
 import { Survey } from '../../../models/survey.model';
+import { SurveyContainerComponent } from "../survey-container/survey-container.component";
 
 @Component({
   selector: 'app-home',
-  imports: [CardComponent, CommonModule],
+  imports: [CommonModule, SurveyContainerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

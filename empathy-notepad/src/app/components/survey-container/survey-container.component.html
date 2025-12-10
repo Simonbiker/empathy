@@ -1,0 +1,13 @@
+<div class="survey-wrapper">
+  <div *ngFor="let singleSurvey of surveys" >
+      <h2>{{ singleSurvey.title }}</h2>
+      <p class="survey-description">{{ singleSurvey.description }}</p>
+  
+      <app-card 
+            [surveyData]="singleSurvey"
+            (editSurvey)="handleEditClick($event.id)"> 
+      </app-card>
+</div>
+  <button (click)="createSurvey.emit()">Create New Survey</button> 
+  
+</div>

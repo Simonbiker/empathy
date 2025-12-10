@@ -1,1 +1,35 @@
-<p>menu works!</p>
+<div class="question-menu-container" (blur)="isOpen = false" tabindex="0">
+  
+  <button class="dropdown-toggle" (click)="toggleMenu()">
+    Add Question Type 
+    <span *ngIf="selectedKey" class="selected-label"> ({{ selectedKey | titlecase }})</span>
+  </button>
+
+  <div class="dropdown-panel" *ngIf="isOpen">
+
+    <div class="search-input">
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (ngModelChange)="filterList()" 
+        placeholder="Search question types..."
+      >
+    </div>
+
+    <ul class="menu-list">
+      <li 
+        *ngFor="let type of filteredTypes" 
+        (click)="selectType(type.key)"
+        [class.highlighted]="type.key === selectedKey"
+        class="menu-item">
+        
+        {{ type.label }}
+      </li>
+      
+      <li *ngIf="filteredTypes.length === 0" class="no-results">
+        No results found for "{{ searchTerm }}"
+      </li>
+    </ul>
+    
+  </div>
+</div>

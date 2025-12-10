@@ -1,0 +1,71 @@
+.question-menu-container {
+  position: relative; /* Essential for dropdown positioning */
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.dropdown-panel {
+  position: absolute;
+  top: 100%; /* Position right below the button */
+  left: 0;
+  z-index: 1000;
+  min-width: 250px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+}
+
+.search-input {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.search-input input {
+  width: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.menu-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Highlighting the selected item */
+.highlighted {
+  background-color: #e0f7fa; /* Light blue background */
+  font-weight: bold;
+  color: #007bff;
+}
+
+.no-results {
+  padding: 10px;
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}

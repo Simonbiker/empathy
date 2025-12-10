@@ -1,11 +1,62 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+interface QuestionType {
+  key: string;
+  label: string;
+}
 
 @Component({
   selector: 'app-menu',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
+
+  @Output() typeSelected = new EventEmitter<string>();
+
+  public isOpen: boolean = false;
+  public searchTerm: string = '';
+  public selectedKey: string | null = null;
+
+  public allTypes: QuestionType[] = [
+    { key: 'search', label: 'Search' }, // Placeholder for the search input
+    { key: 'single_choice', label: 'Single Choice' },
+    { key: 'multiple_choice', label: 'Multiple Choice' },
+    { key: 'single_line', label: 'Single-Line Input' },
+    { key: 'dropdown', label: 'Dropdown List' }
+  ];
+
+  public filteredTypes: QuestionType[] = [];
+
+  ngOnInit(): void {
+    this.filterList();
+  }
+
+  toggleMenu(): void {
+    this.isOpen = !this.isOpen;
+    if (this.isOpen) {
+    // Restart search when menu opens 
+      this.searchTerm = '';
+      this.filterList(); 
+    }
+  }
+
+  filterList(): void {
+    const term = this.searchTerm.toLowerCase();
+    
+    this.filteredTypes = this.allTypes.filter(type => 
+      type.key !== 'search' && type.label.toLowerCase().includes(term)
+    );
+  }
+
+  selectType(key: string): void {
+    this.selectedKey = key;
+    this.typeSelected.emit(key);
+    this.isOpen = false; // Close menu after selection
+  }
 
 }
