@@ -18,8 +18,32 @@
         </ul>   
     </div>
     
+    <hr style="color: #EAECF0;">
+
+   <div class="question-config-actions">
     
-    <p *ngIf="!questionData.options || questionData.options.length === 0" class="no-options">
-        [Answer Type: Text Input]
-    </p>
+    <div class="config-toggle-wrapper">
+        <span class="toggle-text">Randomise Options</span>
+        
+        <label class="switch">
+            <input 
+                type="checkbox"  
+                [checked]="questionData.randomizeOptionsInd"
+                > 
+            
+            <span class="slider round"></span> 
+        </label>
+    </div>
+    
+    <div class="config-toggle-wrapper">
+        <span class="toggle-text">Make Required</span>
+        <label class="switch">
+            <input 
+                type="checkbox"  
+                [checked]="questionData.mandatoryInd"
+                > 
+            <span class="slider round"></span> 
+        </label>
+    </div>
+</div>
 </div>

@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Question } from '../../../models/survey.model';
+
+interface QuestionConfigChange {
+  questionId: string;
+  field: 'randomizeOptions' | 'mandatoryInd';
+  value: boolean;
+}
 
 @Component({
   selector: 'app-question',
@@ -12,4 +18,8 @@ import { Question } from '../../../models/survey.model';
 export class QuestionComponent {
   @Input() questionData!: Question;
   @Input() displayIndex!: number;
+
+  @Output() configChange = new EventEmitter<QuestionConfigChange>();
+
+
 }
