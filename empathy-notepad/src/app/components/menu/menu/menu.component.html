@@ -2,7 +2,8 @@
   
   <button class="dropdown-toggle" (click)="toggleMenu()">
     
-    <app-circle-checked-icon class="menu-svg-icon" [src]="'icons/app-circle-checked-icon'"></app-circle-checked-icon>
+    <img src="../../../../assets/icons/circle-check.svg" alt="Test Icon" style="width: 20px; height: 20px;">
+    <!-- <app-circle-checked-icon class="menu-svg-icon" [name]="iconMap[type.key]"></app-circle-checked-icon> -->
 
     <span *ngIf="selectedKey" class="selected-label"> ({{ selectedKey | titlecase }})</span>
     <span *ngIf="!selectedKey" class="selected-label">Single Choice</span>
@@ -26,6 +27,8 @@
         [class.highlighted]="type.key === selectedKey"
         class="menu-item">
         
+        <app-circle-checked-icon class="menu-svg-icon" [name]="iconMap[type.key]"></app-circle-checked-icon>
+      
         {{ type.label }}
       </li>
       

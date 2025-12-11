@@ -11,8 +11,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(
       withInterceptors([
-        emailInterceptor
-      ]) 
+        emailInterceptor, 
+      ]),
     )
   ]
 };

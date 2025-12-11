@@ -32,6 +32,13 @@ export class MenuComponent implements OnInit {
     { key: 'dropdown', label: 'Dropdown List' }
   ];
 
+  iconMap: { [key: string]: string } = {
+    'single_choice': 'single-choice.svg',
+    'multiple_choice': 'multiple-choice.svg',
+    'single_line': 'single-line.svg',
+    'dropdown': 'dropdown.svg'
+  };
+
   public filteredTypes: QuestionType[] = [];
   constructor(private elementRef: ElementRef) {}
 
