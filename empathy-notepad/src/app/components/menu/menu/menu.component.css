@@ -4,7 +4,7 @@
 }
 
 .dropdown-toggle {
-  padding: 8px 15px;
+  padding: 8px;
   width: 161px;
   height: 36px;
   background-color: #F5FAFF;
@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
 
-  gap: 4px;
+  gap: 8px;
 
   justify-content: flex-start;
 }
@@ -25,10 +25,10 @@
     width: 20px; 
     height: 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-
     color: #175CD3;
 }
 
