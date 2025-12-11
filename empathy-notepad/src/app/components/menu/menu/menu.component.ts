@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CircleCheckedIcon } from '../../../shared/icons/circle-checked-icon/circle-checked-icon';
+import { SafeHtmlPipe } from '../../../shared/pipes/save-html.pipe';
+import { KEYBOARD_CHOICE_SVG, MULTIPLE_CHOICE_SVG, SINGLE_CHOICE_SVG, SQUARE_CARET_DOWN_CHOICE_SVG } from '../../../shared/icons/svg-constants';
 
 interface QuestionType {
   key: string;
@@ -12,7 +13,7 @@ interface QuestionType {
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, FormsModule, CircleCheckedIcon],
+  imports: [CommonModule, FormsModule, SafeHtmlPipe],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
@@ -32,11 +33,11 @@ export class MenuComponent implements OnInit {
     { key: 'dropdown', label: 'Dropdown List' }
   ];
 
-  iconMap: { [key: string]: string } = {
-    'single_choice': 'single-choice.svg',
-    'multiple_choice': 'multiple-choice.svg',
-    'single_line': 'single-line.svg',
-    'dropdown': 'dropdown.svg'
+  svgMap: { [key: string]: string } = {
+    'single_choice': SINGLE_CHOICE_SVG,
+    'multiple_choice': MULTIPLE_CHOICE_SVG,
+    'single_line': KEYBOARD_CHOICE_SVG,
+    'dropdown': SQUARE_CARET_DOWN_CHOICE_SVG
   };
 
   public filteredTypes: QuestionType[] = [];

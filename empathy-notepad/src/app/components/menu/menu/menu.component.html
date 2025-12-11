@@ -26,9 +26,10 @@
         (click)="selectType(type.key)"
         [class.highlighted]="type.key === selectedKey"
         class="menu-item">
-        
-        <app-circle-checked-icon class="menu-svg-icon" [name]="iconMap[type.key]"></app-circle-checked-icon>
-      
+        <span 
+          class="menu-svg-icon" 
+          [innerHTML]="svgMap[type.key] | safeHtml">
+        </span>
         {{ type.label }}
       </li>
       

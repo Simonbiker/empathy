@@ -21,12 +21,30 @@
 }
 
 .menu-svg-icon {
+    /* Container size */
     width: 16px; 
     height: 16px;
-    
-    fill: #175CD3;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Set the color for the SVG paths */
+    color: #4B5563; /* Sets the 'currentColor' for the SVG */
     flex-shrink: 0;
+}
+
+/* Ensure the injected SVG and its path use the size/color correctly */
+.menu-svg-icon > svg {
+    width: 100%;
+    height: 100%;
+}
+
+.menu-svg-icon > svg path {
+    /* If the path in the constant is fill="currentColor", this is necessary */
+    fill: currentColor; 
+}
+
+.menu-item:hover .menu-svg-icon {
+    color: #175CD3; /* Example hover color */
 }
 
 .dropdown-panel {

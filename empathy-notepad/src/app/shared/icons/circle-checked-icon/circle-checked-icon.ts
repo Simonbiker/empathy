@@ -20,7 +20,7 @@ export class CircleCheckedIcon implements OnInit {
       svgContent: SafeHtml | null = null;
 
       public iconPath!: string;
-      private readonly assetsBase: string = '/assets/icons/';
+      private readonly assetsBase: string = '../../../../assets/icons/';
 
 
       constructor(
