@@ -37,11 +37,7 @@ export class HomeComponent implements OnInit{
         this.isLoading = false;
       }
     });
-  }
-
-  goToEdit(id: string): void {
-    this.router.navigate(['/surveys/edit', id]);
-  }
+  }  
 
   goToCreate(): void {
     this.router.navigate(['/surveys/create']);

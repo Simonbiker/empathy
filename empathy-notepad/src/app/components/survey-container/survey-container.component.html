@@ -1,50 +1,33 @@
-<ng-container *ngIf="surveys.length > 0">
-  
-  <!-- For testing purposes to show only one -->
-  <ng-container *ngIf="surveys[0] as singleSurvey">
+<ng-container *ngIf="surveys.length > 0; else noSurveysFound">
     
-    <div class="survey-wrapper"> 
-      <div class="title-wrapper">
-        <h2 class="title">{{ singleSurvey.title }}</h2>
-        <p class="description">{{ singleSurvey.description }}</p>
-      </div>
-      
-      <!-- <app-question 
-        *ngFor="let question of singleSurvey.questions" 
-        [questionData]="question"
-        [displayIndex]="singleSurvey.questions.indexOf(question) + 1">
-      </app-question>  -->
-      <!-- <app-card 
-        [surveyData]="singleSurvey" 
-        (editSurvey)="handleEditClick($event.id)"> 
-      </app-card> -->
+    <div class="survey-wrapper" *ngFor="let survey of surveys; trackBy: trackById"> 
+        <div class="title-wrapper">
+            <h2 class="title">{{ survey.title }}</h2> 
+            <p class="description">{{ survey.description }}</p>
+        </div>
+        
+        <app-card 
+            *ngFor="let question of survey.questions; let i = index" 
+            [questionData]="question"
+            [displayIndex]="i + 1" 
+            (typeSelected)="onQuestionTypeSelect(survey.id, $event)">
+        </app-card>
 
-      <app-card 
-        *ngFor="let question of singleSurvey.questions" 
-        [questionData]="question"
-        [displayIndex]="singleSurvey.questions.indexOf(question) + 1"
-        (typeSelected)="onQuestionTypeSelect(singleSurvey.id, $event)">
-      </app-card>
-
-      <div class="create-button-wrapper">
-          <button (click)="createSurvey.emit()" class="create-button">
-          <span 
-            class="plus-svg-icon"
-            [innerHTML]="svgMap['plus_svg'] | safeHtml">
-          </span> 
-          Add a question
-        </button>
-      </div>
-      
-      
+        <div class="create-button-wrapper">
+            <button (click)="goToEdit(survey.id)" class="create-button">
+            <span 
+                class="plus-svg-icon"
+                [innerHTML]="svgMap['plus_svg'] | safeHtml">
+            </span> 
+            Add a question
+            </button>
+        </div>
     </div>
-
-  </ng-container>
 </ng-container>
 
-<ng-container *ngIf="surveys.length === 0">
+<ng-template #noSurveysFound>
     <div class="no-surveys-wrapper">
         <p>No surveys are currently available for display.</p>
         <button (click)="createSurvey.emit()" class="create-button">Start First Survey</button>
     </div>
-</ng-container>
+</ng-template>

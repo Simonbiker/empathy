@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CardComponent } from '../card/card.component';
-import { Survey } from '../../../models/survey.model';
 import { CommonModule } from '@angular/common';
 import { PLUS_SVG } from '../../shared/icons/svg-constants';
 import { SafeHtmlPipe } from "../../shared/pipes/save-html.pipe";
+import { Router } from '@angular/router';
+import { Survey } from '../../../models/survey.model';
 
 interface NewQuestionPayload {
     surveyId: string;
@@ -17,12 +18,15 @@ interface NewQuestionPayload {
   templateUrl: './survey-container.component.html',
   styleUrl: './survey-container.component.css'
 })
+
 export class SurveyContainerComponent {
-  @Input() surveys: Survey[] = [];
+
+constructor(private router: Router) {}
   
+  @Input() surveys: Survey[] = [];
+
   @Input() listTitle: string = 'Available Surveys';
 
-  @Output() editSurvey = new EventEmitter<string>();
   @Output() createSurvey = new EventEmitter<void>();
 
   @Output() questionTypeSelected = new EventEmitter<NewQuestionPayload>();
@@ -31,15 +35,17 @@ export class SurveyContainerComponent {
     'plus_svg': PLUS_SVG
   }
 
-  handleEditClick(id: string): void {
-    this.editSurvey.emit(id);
-  }
+  trackById(index: number, item: any): string {
+      return item.id;
+    }
 
   onQuestionTypeSelect(surveyId: string, type: string): void {
     console.log(`Question type selected: ${type} for Survey ID: ${surveyId}`);
-    
-    // Emit the necessary data (ID and Type) up to the HomeComponent
     this.questionTypeSelected.emit({ surveyId, questionType: type });
-    // TODO: The HomeComponent will now handle the API call to add the question.
   }
+
+  goToEdit(id: string): void {
+    this.router.navigate(['/surveys/edit', id]);
+  }
+
 }
