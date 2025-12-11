@@ -1,5 +1,5 @@
 .question-menu-container {
-  position: relative; /* Essential for dropdown positioning */
+  position: relative;
   display: inline-block;
 }
 
@@ -82,6 +82,9 @@
 }
 
 .search-input {
+  position: relative;
+  display: flex;
+  align-items: center;
   padding: 8px;
   border-bottom: 1px solid #eee;
 }
@@ -92,6 +95,36 @@
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 3px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px; 
+  z-index: 2;
+
+  width: 16px; 
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #667085; 
+}
+
+.search-input .text-input {
+  width: 100%;
+  height: 32px; 
+  padding: 6px 6px 6px 28px; 
+  
+  box-sizing: border-box; 
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  outline: none;
+}
+
+.search-icon > svg {
+  width: 100%;
+  height: 100%;
 }
 
 .menu-list {
@@ -110,7 +143,6 @@
   cursor: pointer;
   transition: background-color 0.2s;
   width: 240px;
-  height: 40px;
   border-radius: 8px;
   overflow: hidden;
   white-space: nowrap;

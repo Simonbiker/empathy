@@ -31,11 +31,16 @@
   <div class="dropdown-panel" *ngIf="isOpen">
 
     <div class="search-input">
+      <span 
+          class="search-icon"
+          [innerHTML]="svgMap['magnifying_glass'] | safeHtml">
+      </span>
       <input 
+        class="text-input"
         type="text" 
         [(ngModel)]="searchTerm" 
         (ngModelChange)="filterList()" 
-        placeholder="Search question types..."
+        placeholder="Search"
       >
     </div>
 

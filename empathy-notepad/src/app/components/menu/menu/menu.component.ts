@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SafeHtmlPipe } from '../../../shared/pipes/save-html.pipe';
-import { CHEVRON_DOWN_SVG, KEYBOARD_CHOICE_SVG, MULTIPLE_CHOICE_SVG, SINGLE_CHOICE_SVG, SQUARE_CARET_DOWN_CHOICE_SVG } from '../../../shared/icons/svg-constants';
+import { CHEVRON_DOWN_SVG, KEYBOARD_CHOICE_SVG, MAGNIFYING_GLASS_SVG, MULTIPLE_CHOICE_SVG, SINGLE_CHOICE_SVG, SQUARE_CARET_DOWN_CHOICE_SVG } from '../../../shared/icons/svg-constants';
 
 interface QuestionType {
   key: string;
@@ -38,7 +38,8 @@ export class MenuComponent implements OnInit {
     'multiple_choice': MULTIPLE_CHOICE_SVG,
     'single_line': KEYBOARD_CHOICE_SVG,
     'dropdown': SQUARE_CARET_DOWN_CHOICE_SVG,
-    'chevron_down': CHEVRON_DOWN_SVG
+    'chevron_down': CHEVRON_DOWN_SVG,
+    'magnifying_glass': MAGNIFYING_GLASS_SVG
   };
 
   public filteredTypes: QuestionType[] = [];
