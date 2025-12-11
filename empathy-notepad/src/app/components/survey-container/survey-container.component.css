@@ -52,6 +52,26 @@
       margin: 0px;
 }
 
+.create-button{
+      width: 148px;
+      height: 40px;
+      border-radius: 8px;
+      padding: 8px 12px 8px 12px;
+      color: #1570EF;
+      background-color: white;
+      border: none;
+      display: flex;
+      font-weight: 600;
+      size: 14px;
+}
+
+.plus-svg-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      vertical-align: middle;
+}
+
 /* Desktop styles */
 @media (min-width: 1024px) {
       .survey-wrapper {

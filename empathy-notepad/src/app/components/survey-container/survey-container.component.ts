@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { Survey } from '../../../models/survey.model';
 import { CommonModule } from '@angular/common';
+import { PLUS_SVG } from '../../shared/icons/svg-constants';
+import { SafeHtmlPipe } from "../../shared/pipes/save-html.pipe";
 
 interface NewQuestionPayload {
     surveyId: string;
@@ -11,7 +13,7 @@ interface NewQuestionPayload {
 @Component({
   selector: 'app-survey-container',
   standalone: true,
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, CardComponent, SafeHtmlPipe],
   templateUrl: './survey-container.component.html',
   styleUrl: './survey-container.component.css'
 })
@@ -25,6 +27,10 @@ export class SurveyContainerComponent {
 
   @Output() questionTypeSelected = new EventEmitter<NewQuestionPayload>();
   
+  svgMap: { [key: string]: string } = {
+    'plus_svg': PLUS_SVG
+  }
+
   handleEditClick(id: string): void {
     this.editSurvey.emit(id);
   }

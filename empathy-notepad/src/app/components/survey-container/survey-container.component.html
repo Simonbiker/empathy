@@ -26,7 +26,16 @@
         (typeSelected)="onQuestionTypeSelect(singleSurvey.id, $event)">
       </app-card>
 
-      <button (click)="createSurvey.emit()" class="create-button">+ Create New Survey</button>
+      <div class="create-button-wrapper">
+          <button (click)="createSurvey.emit()" class="create-button">
+          <span 
+            class="plus-svg-icon"
+            [innerHTML]="svgMap['plus_svg'] | safeHtml">
+          </span> 
+          Add a question
+        </button>
+      </div>
+      
       
     </div>
 
