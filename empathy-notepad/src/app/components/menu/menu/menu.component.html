@@ -2,11 +2,30 @@
   
   <button class="dropdown-toggle" (click)="toggleMenu()">
     
+    <!-- Below lines are for testing the app-circle-checked-icon component -->
     <!-- <img src="../../../../assets/icons/circle-check.svg" alt="Test Icon" style="width: 20px; height: 20px;"> -->
     <!-- <app-circle-checked-icon class="menu-svg-icon" [name]="iconMap[type.key]"></app-circle-checked-icon> -->
 
-    <span *ngIf="selectedKey" class="selected-label"> ({{ selectedKey | titlecase }})</span>
+    <span 
+        *ngIf="selectedKey"
+        class="button-svg-icon"
+        [innerHTML]="svgMap[selectedKey] | safeHtml">
+    </span>
+
+    <span 
+        *ngIf="!selectedKey"
+        class="button-svg-icon"
+        [innerHTML]="svgMap['single_choice'] | safeHtml">
+    </span>
+
+    <span *ngIf="selectedKey" class="selected-label">{{ (selectedKey ? selectedKey : 'single_choice') | titlecase }}</span>
     <span *ngIf="!selectedKey" class="selected-label">Single Choice</span>
+
+    <span 
+        *ngIf="!selectedKey"
+        class="button-svg-icon"
+        [innerHTML]="svgMap['chevron_down'] | safeHtml">
+    </span>
 </button>
 
   <div class="dropdown-panel" *ngIf="isOpen">
