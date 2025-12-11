@@ -8,15 +8,19 @@ import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
       standalone: true,
       imports: [CommonModule],
       styleUrls: ['./circle-checked-icon.css'],
-      template: '<div class="svg-wrapper" [innerHTML]="svgContent"></div>'
+      template: `
+        <img [src]="iconPath" 
+             alt="Question Type Icon">
+      `
 })
 
 export class CircleCheckedIcon implements OnInit {
       @Input({required: true}) name!: string;
-      // @Input() src: string = 'assets/icons/circle-checked.svg';
 
       svgContent: SafeHtml | null = null;
-      private readonly assetPath: string = 'icons/';
+
+      public iconPath!: string;
+      private readonly assetsBase: string = '/assets/icons/';
 
 
       constructor(
@@ -27,17 +31,6 @@ export class CircleCheckedIcon implements OnInit {
       ngOnInit(): void {
             if (!this.name) return;
 
-            const fullUrl = `${this.assetPath}${this.name}`;
-            
-            this.http.get(fullUrl, { responseType: 'text' }).subscribe({
-                  next: (svgText) => {
-                        // Sanitize the content before injecting it into the DOM
-                        this.svgContent = this.sanitizer.bypassSecurityTrustHtml(svgText);
-                  },
-                  error: (error) => {
-                        console.error('Error loading SVG:', error);
-                        this.svgContent = null;
-                  }
-            });
+            this.iconPath = `${this.assetsBase}${this.name}`;
       }
 }
