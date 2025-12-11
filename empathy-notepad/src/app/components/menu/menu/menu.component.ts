@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CircleCheckedIcon } from '../../../shared/icons/circle-checked-icon/circle-checked-icon';
 
 interface QuestionType {
   key: string;
@@ -11,7 +12,7 @@ interface QuestionType {
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CircleCheckedIcon],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
