@@ -21,10 +21,6 @@ export class CardComponent {
   @Output() editSurvey = new EventEmitter<String>();
   @Output() typeSelected = new EventEmitter<string>(); 
 
-  // onEditClick(): void {
-  //   this.editSurvey.emit(this.surveyData); 
-  // }
-
   onQuestionTypeSelect(type: string): void {
     console.log(`Question type selected for survey ${this.surveyData.id}: ${type}`);
     // TODO logic to add question of selected type to the survey

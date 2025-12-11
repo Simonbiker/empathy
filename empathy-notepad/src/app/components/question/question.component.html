@@ -1,4 +1,6 @@
-<div class="question-card">
+<div class="question-card" 
+    [ngClass]="{'is-first-question': displayIndex === 1}"
+    tabindex="0">
     <div class="question-header">
         <div class="question-index-and-menu"> 
           <div class="index-box-wrapper"> 

@@ -21,5 +21,4 @@ export class QuestionComponent {
 
   @Output() configChange = new EventEmitter<QuestionConfigChange>();
 
-
 }

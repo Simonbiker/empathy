@@ -4,8 +4,15 @@
       width: 100%;
       padding: 10px;
       border-radius: 8px;
-      border: 1px solid #1570EF;
+      border: 1px solid;
+      border-color: #D0D5DD !important;
       margin-bottom: 1px;
+      transition: border-color 0.3s ease;
+}
+
+.question-card.question-card:hover, 
+.question-card.question-card.is-first-question {
+    border-color: #1570EF !important;
 }
 
 
