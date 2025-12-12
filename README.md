@@ -38,7 +38,7 @@ Angular version 19.2.19
 npm install
 ng serve --open
 
-###SVG links
+### SVG links
 
 https://fontawesome.com/icons/circle-check?f=classic&s=regular
 
