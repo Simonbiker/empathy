@@ -8,6 +8,7 @@ import { Survey, Question } from '../../../models/survey.model'; // Assuming Que
 @Component({
   selector: 'app-manage-survey',
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  styleUrls: ['./manage-survey.component.css'],
   templateUrl: './manage-survey.component.html'
 })
 export class ManageSurveyComponent implements OnInit {
