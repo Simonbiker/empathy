@@ -2,8 +2,8 @@
     
     <app-question 
         [questionData]="questionData"
-        [displayIndex]="displayIndex">
-        
+        [displayIndex]="displayIndex"
+        (configChange)="handleQuestionConfigUpdate($event)">
         <app-menu 
             (typeSelected)="typeSelected.emit($event)" 
             menu-slot>

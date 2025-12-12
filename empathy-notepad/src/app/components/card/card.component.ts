@@ -4,6 +4,11 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../menu/menu/menu.component';
 import { QuestionComponent } from '../question/question.component';
 
+interface QuestionConfigChange {
+  questionId: string;
+  field: 'randomizeOptions' | 'mandatoryInd';
+  value: boolean;
+}
 
 @Component({
   selector: 'app-card',
@@ -21,8 +26,15 @@ export class CardComponent {
   @Output() editSurvey = new EventEmitter<String>();
   @Output() typeSelected = new EventEmitter<string>(); 
 
+  @Output() questionConfigChange = new EventEmitter<QuestionConfigChange>();
+
   onQuestionTypeSelect(type: string): void {
     console.log(`Question type selected for survey ${this.surveyData.id}: ${type}`);
     // TODO logic to add question of selected type to the survey
+  }
+
+  handleQuestionConfigUpdate(change: QuestionConfigChange): void {
+    console.log('Card Component received config update:', change);    
+    this.questionConfigChange.emit(change);
   }
 }

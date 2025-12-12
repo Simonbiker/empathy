@@ -21,4 +21,13 @@ export class QuestionComponent {
 
   @Output() configChange = new EventEmitter<QuestionConfigChange>();
 
+  onCheckboxChange(field: 'randomizeOptions' | 'mandatoryInd', event: Event): void {
+    const isChecked = (event.target as HTMLInputElement).checked;
+
+    this.configChange.emit({
+      questionId: this.questionData.questionId.toString(), 
+      field: field,
+      value: isChecked,
+    });
+  }
 }

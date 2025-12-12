@@ -3,7 +3,13 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators } fr
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ApiDataService } from '../../service/api-data.service';
-import { Survey, Question } from '../../../models/survey.model'; // Assuming Question is imported here
+import { Survey, Question } from '../../../models/survey.model';
+
+interface QuestionConfigChange {
+  questionId: string;
+  field: 'randomizeOptions' | 'mandatoryInd';
+  value: boolean;
+}
 
 @Component({
   selector: 'app-manage-survey',
@@ -123,6 +129,28 @@ export class ManageSurveyComponent implements OnInit {
 
   removeOption(questionIndex: number, optionIndex: number): void {
     this.getOptions(questionIndex).removeAt(optionIndex);
+  }
+
+
+  // -- Modify Question Configuration ---
+
+  handleQuestionConfigUpdate(change: QuestionConfigChange): void {
+    const fieldName = change.field;
+    const newValue = change.value;
+
+    const qIndex = parseInt(change.questionId, 10); 
+
+    if (qIndex >= 0 && qIndex < this.questions.length) {
+      const questionControl = this.questions.at(qIndex);
+
+      questionControl.get(fieldName)?.setValue(newValue, { emitEvent: true });
+      
+      console.log(`Updated question #${qIndex + 1}: ${fieldName} set to ${newValue}`);
+      
+      this.surveyForm.updateValueAndValidity();
+    } else {
+      console.error('Failed to find question control for update. Index out of bounds.', change);
+    }
   }
 
   // --- SUBMISSION LOGIC ---
