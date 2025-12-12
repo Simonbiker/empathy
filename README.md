@@ -31,7 +31,14 @@ Component Struture
 <img width="1024" height="1024" alt="Component Struture" src="https://github.com/user-attachments/assets/6ef57269-f40b-4ad2-83f7-5c946bd37469" />
 
 
-SVG links
+### Install & Setup
+
+Node.js latest version
+Angular version 19.2.19
+npm install
+ng serve --open
+
+###SVG links
 
 https://fontawesome.com/icons/circle-check?f=classic&s=regular
 
